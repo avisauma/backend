@@ -5,15 +5,20 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["http://localhost:5173/"],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 @app.get("/")
-def home():
-    return {"message": "Backend running!"}
+def greetings():
+    return "welcome FASTAPI"
 
-@app.get("/api/hello")
-def hello():
-    return {"message": "Frontend connected to backend!"}
+@app.get("/users/")
+def get_users():
+    return {
+        "name": "uma",
+        "age": 22,
+        "phone_number": "xxxxxxxxxx"
+    }
